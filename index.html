@@ -138,6 +138,29 @@
             <h2>Follow us on Instagram! <a href="https://instagram.com/stormy_baits/"><img height="24" width="24" src="https://c1.staticflickr.com/9/8168/7448717958_1738735d85_b.jpg" alt="Instagram" /></a></h2>
         </section>
     </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $.ajax({
+          type: 'get',
+          url: 'https://api.instagram.com/v1/users/987029020/media/recent/?client_id=1922d86cdc73494eb6c826dfaadf2a24',
+          dataType: 'jsonp'
+        }).done(function(response){
+          response.data.forEach(function(d){
+            var div = $("<div class='col-sm-6 col-md-3' />");
+            var a = $("<a class='thumbnail'></a>");
+            var img = $("<img />");
+            img.attr("src", d.images.standard_resolution.url);
+            a.attr("href", d.images.standard_resolution.url);
+            a.append(img);
+            div.append(a);
+            $('#pics').append(div);
+    			});
+        });
+      });
+    </script>
 </body>
 
 </html>
